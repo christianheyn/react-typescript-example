@@ -1,7 +1,6 @@
-# react+typescript basic
-[![Build Status](https://travis-ci.org/christianheyn/react-typescript-basic.svg?branch=master)](https://travis-ci.org/christianheyn/react-typescript-basic)
+# react+typescript example
 
-Basic config for work with typescript and react.
+Just a example (react-router and stuff)
 
 ## Install
 
@@ -32,9 +31,3 @@ $ npm test
 ```
 $ npm run lint:script
 ```
-
-
-___
-
-#### Thanks to ...
-[Willson Mock](https://github.com/fay-jai) for his Post **Getting Started with React, Typescript and Webpack Medium** [blog post](https://medium.com/@fay_jai/getting-started-with-reactjs-typescript-and-webpack-95dcaa0ed33c#.cp7sr9ewx)
