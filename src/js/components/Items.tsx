@@ -5,7 +5,8 @@ import Item from './Item';
 import { receiveItemlist } from '../actions';
 
 interface ItemsProps {
-    dispatch: Object
+    dispatch: Object;
+    itemList: Object[];
 };
 
 interface ItemData {
@@ -27,11 +28,7 @@ interface Store {
     };
 })
 
-class Items extends React.Component<ItemsProps, {}> {
-
-    constructor(props: ItemsProps) {
-        super(props);
-    }
+class Items extends React.Component<ItemsProps, void> {
 
     protected componentWillMount(): void {
         if (this.props.itemList.length > 0) {
