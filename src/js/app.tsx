@@ -1,19 +1,26 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Router, Route, hashHistory } from 'react-router';
+import { Router, Route, hashHistory, IndexRoute } from 'react-router';
+import { Provider } from 'react-redux';
 
-import Start from './components/Start';
+import Store from './store';
+
+import App from './components/App';
+import Home from './components/Home';
 import Items from './components/Items';
 import Item from './components/Item';
 
 ReactDOM.render(
     (
-        <Router history={hashHistory}>
-            <Route path="/" component={Start}>
-                <Route path="/items" component={Items}/>
-                <Route path="/items/:id" component={Item}/>
-            </Route>
-        </Router>
+    	<Provider store={Store}>
+	        <Router history={hashHistory}>
+	            <Route path="/" component={App}>
+	            	 <IndexRoute component={Home}/>
+	                <Route path="/items" component={Items}/>
+	                <Route path="/items/:id" component={Item}/>
+	            </Route>
+	        </Router>
+	    </Provider>
     ),
     document.getElementById('root')
 );

@@ -1,12 +1,11 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import Item from './Item';
+import { receiveItemlist } from '../actions';
 
 interface ItemsProps {
-}
-
-interface ItemsStates {
-    items: Object[];
+    dispatch: Object
 };
 
 interface ItemData {
@@ -14,30 +13,44 @@ interface ItemData {
     name: string;
 };
 
-class Items extends React.Component<ItemsProps, ItemsStates> {
+interface State {
+    itemList: Object[] | {};
+};
+
+interface Store {
+    itemList: Object[] | {};
+};
+
+@connect((store:Store):State => {
+    return {
+        itemList: store.itemList
+    };
+})
+
+class Items extends React.Component<ItemsProps, {}> {
 
     constructor(props: ItemsProps) {
         super(props);
-        this.state = {
-            items: []
-        };
     }
 
-    protected componentDidMount(): void {
+    protected componentWillMount(): void {
+        if (this.props.itemList.length > 0) {
+            return;
+        }
+
         window.fetch('./data/items.json')
             .then((response: Response) => {
                 response
                     .json()
                     .then((json: ItemData[]) => {
-                        this.setState({
-                            items: json
-                        });
+                        console.log(3)
+                        this.props.dispatch(receiveItemlist(json));
                     });
                 });
     }
 
     public render(): JSX.Element {
-        const items: JSX.Element[] = this.state.items.map(
+        const items: JSX.Element[] = this.props.itemList.map(
                 (item: ItemData, i: number) => {
                     return <Link to={`/items/${item.id}`} key={item.id}>{item.name}<br /></Link>;
                 }
