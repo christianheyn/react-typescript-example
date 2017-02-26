@@ -5,7 +5,7 @@ import Item from './Item';
 import { receiveItemlist } from '../actions';
 
 interface ItemsProps {
-    dispatch: Object;
+    dispatch: Function;
     itemList: Object[];
 };
 
